@@ -1,0 +1,63 @@
+[Interrupts]
+Enabled=1
+[MemoryMap]
+Enabled=0
+Base=0
+UseAuto=0
+TypeViolation=1
+UnspecRange=1
+ActionState=1
+[TraceHelper]
+Enabled=0
+ShowSource=1
+[DebugChecksum]
+Checksum=1189830716
+[DisAssemblyWindow]
+NumStates=_ 1
+State 1=_ 1
+[InstructionProfiling]
+Enabled=_ 0
+[CodeCoverage]
+Enabled=_ 0
+[Profiling]
+Enabled=0
+[StackPlugin]
+Enabled=1
+OverflowWarningsEnabled=1
+WarningThreshold=90
+SpWarningsEnabled=1
+WarnHow=0
+UseTrigger=1
+TriggerName=main
+LimitSize=0
+ByteLimit=50
+[Log file]
+LoggingEnabled=_ 0
+LogFile=_ ""
+Category=_ 0
+[TermIOLog]
+LoggingEnabled=_ 0
+LogFile=_ ""
+[DriverProfiling]
+Enabled=0
+Source=2
+Graph=0
+[Disassemble mode]
+mode=0
+[Breakpoints]
+Bp0=_ "EMUL_DATA" "autostart_processes" 0 0 0 116 0 "" 0 "" 0 0 0 4294967295
+Bp1=_ "EMUL_TRACE_START" "SetSysClock" 0 0 0 180 0 "" 0 "" 0 0 0 4294967295 0 0
+Bp2=_ "EMUL_DATA" "SYSCLK_FREQ_72MHz" 0 0 0 116 0 "" 0 "" 0 0 0 4294967295
+Bp3=_ "EMUL_DATA" "SYSCLK_FREQ_72MHz" 0 0 0 116 0 "" 0 "" 0 0 0 4294967295
+Bp4=_ "EMUL_DATA" "assert_param" 0 0 0 116 0 "" 0 "" 0 0 0 4294967295
+Bp5=_ "EMUL_DATA" "CLOCK_SECOND" 0 0 0 116 0 "" 0 "" 0 0 0 4294967295
+Bp6=_ "EMUL_DATA" "UIP_UDPH_LEN" 0 0 0 116 0 "" 0 "" 0 0 0 4294967295
+Bp7=_ "EMUL_DATA" "ADDR_TENTATIVE" 0 0 0 116 0 "" 0 "" 0 0 0 4294967295
+Bp8=_ "EMUL_DATA" "ADDR_TENTATIVE" 0 0 0 116 0 "" 0 "" 0 0 0 4294967295
+Bp9=_ "EMUL_DATA" "next_expiration" 0 0 0 116 0 "" 0 "" 0 0 0 4294967295
+Bp10=_ "STD_CODE" "0x000050F8" 0 0 0 0 "" 0 "" 0
+Bp11=_ "EMUL_DATA" "uip_ds6_defrt_choose" 1 0 0 116 0 "" 0 "" 0 0 0 4294967295
+Count=12
+[Aliases]
+Count=0
+SuppressDialog=0
