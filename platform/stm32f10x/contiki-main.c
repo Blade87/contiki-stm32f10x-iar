@@ -17,7 +17,10 @@
 #include "dev/slip.h"
 
 #include "dev/uart1.h"
+#include "dev/uart2.h"
 #include "dev/slip-net.h"
+
+#include <string.h>
 
 #define DEBUG 1
 #if DEBUG
@@ -33,7 +36,7 @@
 
 unsigned int idle_count = 0;
 
-#define XMACADDR "\x00\x11\x22\x33\x44\x55\x66\x77"
+#define XMACADDR "\x00\x80\xe1\x02\x00\x1d\x51\xba"
 int
 main()
 {
@@ -45,14 +48,15 @@ main()
   PRINTF(CONTIKI_VERSION_STRING);
   PRINTF(" on STM32F10x\r\n"); 
   
-  process_init();
+  uart2_int(115200);
   
+  process_init();
   process_start(&etimer_process, NULL);
-  autostart_start(autostart_processes);
+  
+  ctimer_init();
   
 #ifdef WITH_SLIP_NET
-  uart1_set_input(slip_input_byte);
-  //slipnet_init(); 
+  slipnet_init(); 
 #elif WITH_SERIAL_LINE_INPUT
   uart1_set_input(serial_line_input_byte);
   serial_line_init();
@@ -61,15 +65,28 @@ main()
    /* initialize the netstack */
   //netstack_init();
   //NETSTACK_NETWORK.init();
-    
+  
+  memcpy(&uip_lladdr.addr, XMACADDR, sizeof(uip_lladdr.addr));
+#if 1
 #if UIP_CONF_IPV6
-  //memcpy(&uip_lladdr.addr, XMACADDR, sizeof(uip_lladdr.addr));
-  //memcpy(&uip_lladdr.addr, &rimeaddr_node_addr, sizeof(uip_lladdr.addr));
+  rimeaddr_set_node_addr((rimeaddr_t *)&XMACADDR);
+#else
+  rimeaddr_set_node_addr((rimeaddr_t *)&XMACADDR[8-RIMEADDR_SIZE]);
+#endif
+  {
+    int i;
+  printf("Rime started with address ");
+  for(i = 0; i < sizeof(rimeaddr_t) - 1; i++) {
+    printf("%d.", rimeaddr_node_addr.u8[i]);
+  }
+  printf("%d\n", rimeaddr_node_addr.u8[i]);
+  }
+#endif //0
+#if UIP_CONF_IPV6
   queuebuf_init();
   process_start(&tcpip_process, NULL);  
 #endif /* UIP_CONF_IPV6 */
   
-
   
 #if UIP_CONF_IPV6
   
@@ -126,6 +143,7 @@ main()
   }
 
 #endif /* UIP_CONF_IPV6 */
+  autostart_start(autostart_processes);
   while(1) {
     do {
     } while(process_run() > 0);

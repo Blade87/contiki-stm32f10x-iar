@@ -35,16 +35,27 @@
 
 #include "dev/slip.h"
 #include "dev/uart1.h"
+#include "dev/uart2.h"
+
+#define SLIP_UART   2
 /*---------------------------------------------------------------------------*/
 void
 slip_arch_writeb(unsigned char c)
 {
+#if SLIP_UART == 1
   uart1_putc(c);
+#else
+  uart2_putc(c);
+#endif
 }
 /*---------------------------------------------------------------------------*/
 void
 slip_arch_init(unsigned long ubr)
 {
+#if SLIP_UART == 1  
   uart1_set_input(slip_input_byte);
+#else
+  uart2_set_input(slip_input_byte);
+#endif
 }
 /*---------------------------------------------------------------------------*/

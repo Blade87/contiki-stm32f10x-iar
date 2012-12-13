@@ -3,7 +3,7 @@
 <Workspace>
   <ConfigDictionary>
     
-  <CurrentConfigs><Project>zx103/Normal</Project></CurrentConfigs></ConfigDictionary>
+  <CurrentConfigs><Project>zx103/6lowpan-rpl</Project></CurrentConfigs></ConfigDictionary>
   <Desktop>
     <Static>
       <Workspace>
@@ -12,7 +12,7 @@
           
           
           
-        <Column0>276</Column0><Column1>27</Column1><Column2>27</Column2><Column3>27</Column3></ColumnWidths>
+        <Column0>275</Column0><Column1>27</Column1><Column2>27</Column2><Column3>27</Column3></ColumnWidths>
       </Workspace>
       <Build>
         
@@ -20,7 +20,7 @@
         
         
       <ColumnWidth0>20</ColumnWidth0><ColumnWidth1>561</ColumnWidth1><ColumnWidth2>149</ColumnWidth2><ColumnWidth3>37</ColumnWidth3></Build>
-    <Debug-Log><ColumnWidth0>21</ColumnWidth0><ColumnWidth1>1306</ColumnWidth1></Debug-Log><TerminalIO/></Static>
+    <Debug-Log><ColumnWidth0>21</ColumnWidth0><ColumnWidth1>1306</ColumnWidth1></Debug-Log><TerminalIO/><Disassembly><PreferedWindows><Position>4</Position><ScreenPosX>978</ScreenPosX><ScreenPosY>284</ScreenPosY><Windows><Window><Factory>Register</Factory></Window><Window><Factory>QuickWatch</Factory></Window><Window><Factory>Watch</Factory></Window></Windows></PreferedWindows><MixedMode>1</MixedMode><CodeCovShow>0</CodeCovShow><InstrProfShow>0</InstrProfShow></Disassembly><Register><PreferedWindows><Position>4</Position><ScreenPosX>978</ScreenPosX><ScreenPosY>284</ScreenPosY><Windows><Window><Factory>QuickWatch</Factory></Window><Window><Factory>Watch</Factory></Window><Window><Factory>Disassembly</Factory></Window></Windows></PreferedWindows></Register><QuickWatch><PreferedWindows><Position>4</Position><ScreenPosX>861</ScreenPosX><ScreenPosY>193</ScreenPosY><Windows/></PreferedWindows></QuickWatch><Watch><PreferedWindows><Position>4</Position><ScreenPosX>978</ScreenPosX><ScreenPosY>284</ScreenPosY><Windows><Window><Factory>Register</Factory></Window><Window><Factory>QuickWatch</Factory></Window><Window><Factory>Disassembly</Factory></Window></Windows></PreferedWindows></Watch></Static>
     <Windows>
       
       
@@ -32,7 +32,7 @@
             <Factory>Workspace</Factory>
             <Session>
               
-            <NodeDict><ExpandedNode>zx103</ExpandedNode><ExpandedNode>zx103/stm32lib</ExpandedNode><ExpandedNode>zx103/stm32lib/lib</ExpandedNode></NodeDict></Session>
+            <NodeDict><ExpandedNode>zx103</ExpandedNode><ExpandedNode>zx103/core</ExpandedNode><ExpandedNode>zx103/core/dev</ExpandedNode><ExpandedNode>zx103/core/net</ExpandedNode><ExpandedNode>zx103/core/net/rpl</ExpandedNode><ExpandedNode>zx103/cpu</ExpandedNode><ExpandedNode>zx103/example</ExpandedNode><ExpandedNode>zx103/example/hello-world</ExpandedNode><ExpandedNode>zx103/platform</ExpandedNode><ExpandedNode>zx103/platform/stm32f10x</ExpandedNode><ExpandedNode>zx103/platform/stm32f10x/dev</ExpandedNode><ExpandedNode>zx103/stm32lib</ExpandedNode><ExpandedNode>zx103/stm32lib/lib</ExpandedNode></NodeDict></Session>
           </Tab>
         </Tabs>
         
@@ -52,14 +52,14 @@
       
       
       
-    <Pane><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\core\sys\process.c</Filename><XPos>0</XPos><YPos>135</YPos><SelStart>3045</SelStart><SelEnd>3045</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\platform\stm32f10x\contiki-main.c</Filename><XPos>0</XPos><YPos>22</YPos><SelStart>1276</SelStart><SelEnd>1276</SelEnd></Tab><ActiveTab>1</ActiveTab></Pane><ActivePane>0</ActivePane><Sizes><Pane><X>1000000</X><Y>1000000</Y></Pane></Sizes><SplitMode>1</SplitMode></Editor>
+    <Pane/><ActivePane>0</ActivePane><Sizes><Pane><X>1000000</X><Y>1000000</Y></Pane></Sizes><SplitMode>1</SplitMode></Editor>
     <Positions>
       
       
       
       
       
-    <Top><Row0><Sizes><Toolbar-00b099e8><key>iaridepm.enu1</key></Toolbar-00b099e8></Sizes></Row0><Row1><Sizes/></Row1></Top><Left><Row0><Sizes><Wnd0><Rect><Top>-2</Top><Left>-2</Left><Bottom>449</Bottom><Right>350</Right><x>-2</x><y>-2</y><xscreen>199</xscreen><yscreen>200</yscreen><sizeHorzCX>145681</sizeHorzCX><sizeHorzCY>289017</sizeHorzCY><sizeVertCX>257687</sizeVertCX><sizeVertCY>651734</sizeVertCY></Rect></Wnd0></Sizes></Row0></Left><Right><Row0><Sizes/></Row0></Right><Bottom><Row0><Sizes><Wnd1><Rect><Top>-2</Top><Left>-2</Left><Bottom>198</Bottom><Right>1368</Right><x>-2</x><y>-2</y><xscreen>1370</xscreen><yscreen>200</yscreen><sizeHorzCX>1002928</sizeHorzCX><sizeHorzCY>289017</sizeHorzCY><sizeVertCX>145681</sizeVertCX><sizeVertCY>289017</sizeVertCY></Rect></Wnd1></Sizes></Row0></Bottom><Float><Sizes/></Float></Positions>
+    <Top><Row0><Sizes><Toolbar-00b099e8><key>iaridepm.enu1</key></Toolbar-00b099e8></Sizes></Row0><Row1><Sizes/></Row1></Top><Left><Row0><Sizes><Wnd0><Rect><Top>-2</Top><Left>-2</Left><Bottom>477</Bottom><Right>366</Right><x>-2</x><y>-2</y><xscreen>55</xscreen><yscreen>145</yscreen><sizeHorzCX>40264</sizeHorzCX><sizeHorzCY>209538</sizeHorzCY><sizeVertCX>269400</sizeVertCX><sizeVertCY>692197</sizeVertCY></Rect></Wnd0></Sizes></Row0></Left><Right><Row0><Sizes/></Row0></Right><Bottom><Row0><Sizes><Wnd1><Rect><Top>-2</Top><Left>-2</Left><Bottom>170</Bottom><Right>1368</Right><x>-2</x><y>-2</y><xscreen>1370</xscreen><yscreen>172</yscreen><sizeHorzCX>1002928</sizeHorzCX><sizeHorzCY>248555</sizeHorzCY><sizeVertCX>40264</sizeVertCX><sizeVertCY>209538</sizeVertCY></Rect></Wnd1></Sizes></Row0></Bottom><Float><Sizes/></Float></Positions>
   </Desktop>
 </Workspace>
 

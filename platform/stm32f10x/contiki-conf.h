@@ -27,23 +27,45 @@ typedef unsigned int uip_stats_t;
 #endif
 #define AUTOSTART_ENABLE        1
 
+#ifdef WITH_II_802154
+#define UIP_CONF_LL_802154           1
+#define RIMEADDR_CONF_SIZE           8
+
+#ifdef WITH_RPL
+#define UIP_CONF_IPV6_RPL            1
+#define RPL_CONF_STATS               0
+#define RPL_CONF_MAX_DAG_ENTRIES     1
+#ifndef RPL_CONF_OF
+#define RPL_CONF_OF rpl_of_etx
+#endif  //RPL_CONF_OF
+#else   //WITH_RPL
+#define UIP_CONF_IPV6_RPL       0
+#endif  //WITH_RPL
+#else //WITH_II_802154
 #define UIP_CONF_LL_802154      0
+#define UIP_CONF_IPV6_RPL       0
+#endif
 //#define NETSTACK_CONF_MAC     nullmac_driver
 //#define NETSTACK_CONF_RDC     contikimac_driver
 //#define NETSTACK_CONF_NETWORK slipnet_driver
 //#define NETSTACK_CONF_FRAMER  no_framer
 
-#ifdef WITH_SLIP_NET
+#ifdef WITH_SLIP_NET 
+#if UIP_CONF_LL_802154 == 0
 #define UIP_FALLBACK_INTERFACE  slipnet_interface
+#endif
 #endif
 
 #ifdef WITH_IPV6
 #define UIP_CONF_IPV6           1
 #define UIP_CONF_ICMP6          0
-#define UIP_CONF_ROUTER         0
-#define UIP_CONF_IPV6_RPL       0
+#define UIP_CONF_ROUTER         1
+//#define UIP_CONF_IPV6_RPL       1
 #define UIP_CONF_DS6_AADDR_NBU  1
 #define UIP_CONF_TCP_FORWARD    0
+
+#define UIP_CONF_ND6_SEND_RA    0
+
 #endif
 
 /* uIP configuration */
@@ -52,8 +74,8 @@ typedef unsigned int uip_stats_t;
 
 #define UIP_CONF_LLH_LEN         0
 #define UIP_CONF_BROADCAST       1
-#define UIP_CONF_LOGGING          1
-#define UIP_CONF_BUFFER_SIZE    116
+#define UIP_CONF_LOGGING         1
+#define UIP_CONF_BUFFER_SIZE    130
 
 
 

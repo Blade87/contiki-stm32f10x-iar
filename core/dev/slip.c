@@ -40,6 +40,9 @@
 
 #include "net/uip.h"
 #include "net/uip-fw.h"
+
+#define DEBUG_MSG     1
+
 #define BUF ((struct uip_tcpip_hdr *)&uip_buf[UIP_LLH_LEN])
 
 #include "dev/slip.h"
@@ -224,6 +227,7 @@ slip_poll_handler(uint8_t *outbuf, uint16_t blen)
     } else {
       len = (RX_BUFSIZE - begin) + (pkt_end - 0);
       if(len > blen) {
+        printf("liren slip len(%u)>blen(%u)\r\n", len, blen);
 	len = 0;
       } else {
 	unsigned i;
@@ -319,6 +323,13 @@ PROCESS_THREAD(slip_process, ev, data)
 int
 slip_input_byte(unsigned char c)
 {
+#if DEBUG_MSG
+    if (begin==end && c!=0x60 && c != '!' && c!='?') {
+      state = STATE_RUBBISH;
+      if (c=='\r'||c=='\n' || (c>=' ' && c<='~'))printf("%c", c);
+    }
+#endif
+    
   switch(state) {
   case STATE_RUBBISH:
     if(c == SLIP_END) {
