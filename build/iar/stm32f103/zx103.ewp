@@ -2834,11 +2834,8 @@
         </file>
         <file>
           <name>$PROJ_DIR$\..\..\..\platform\stm32f10x\dev\slip-net-6lowpan.c</name>
-        </file>
-        <file>
-          <name>$PROJ_DIR$\..\..\..\platform\stm32f10x\dev\slip-net-normal.c</name>
           <excluded>
-            <configuration>6lowpan-rpl</configuration>
+            <configuration>Normal</configuration>
           </excluded>
         </file>
         <file>

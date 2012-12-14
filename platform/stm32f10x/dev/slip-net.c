@@ -68,6 +68,8 @@ tip_output(uip_lladdr_t *localdest)
   uint16_t i;
   uint8_t *ptr;
   uint8_t c;
+  
+  PRINTF("slipnet tip output: len %d\n", uip_len);
   /*
    * The destination address will be tagged to each outbound
    * packet. If the argument localdest is NULL, we are sending a
@@ -78,10 +80,7 @@ tip_output(uip_lladdr_t *localdest)
   } else {
     //rimeaddr_copy(&dest, (const rimeaddr_t *)localdest);
   }
-  
-   
-  return 0;
-  //return slip_send();
+  return slip_send();
 }
 
 /*---------------------------------------------------------------------------*/
@@ -99,7 +98,24 @@ slipnet_init(void)
   process_start(&slip_process, NULL);
 }
 
+static void _output(void)
+{
+  PRINTF("slipnet slip_output: sending packet len %d\n", uip_len);
+  slip_send();  
+}
 
+static void _init(void)
+{
+}
 /*---------------------------------------------------------------------------*/
 
+struct uip_fallback_interface slipnet_interface = {
+  _init, _output
+};
+/*---------------------------------------------------------------------------*/
+
+char* get_arch_rime_addr(void)
+{
+  return "\x00\x11\x22\x33\x44\x55\x66\x77";
+}
 /*---------------------------------------------------------------------------*/
