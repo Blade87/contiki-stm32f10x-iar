@@ -3,6 +3,7 @@
 #include "stm32f10x_gpio.h"
 #include "stm32f10x_rcc.h"
 #include "misc.h"
+#include "uart1.h"
 
 #ifdef __GNUC__
   /* With GCC/RAISONANCE, small printf (option LD Linker->Libraries->Small printf
@@ -68,8 +69,9 @@ PUTCHAR_PROTOTYPE
   return ch;
 }
 static int (*input_call)(unsigned char x) = NULL;
-void uart1_set_input(int(*fun)(unsigned char))
+void  uart1_set_input(int (*fun)(unsigned char ) )
 {
+ 
   input_call = fun;
 }
 

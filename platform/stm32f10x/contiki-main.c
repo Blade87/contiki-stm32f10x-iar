@@ -37,6 +37,28 @@
 unsigned int idle_count = 0;
 
 #define XMACADDR "\x00\x80\xe1\x02\x00\x1d\x51\xba"
+
+void set_rime_addr(void *addr)
+{
+
+  memcpy(&uip_lladdr.addr, addr, sizeof(uip_lladdr.addr));
+  
+#if UIP_CONF_IPV6
+  rimeaddr_set_node_addr((rimeaddr_t *)&uip_lladdr.addr);
+#else
+  rimeaddr_set_node_addr((rimeaddr_t *)&uip_lladdr.addr[8-RIMEADDR_SIZE]);
+#endif
+  {
+    int i;
+  printf("Rime set with address ");
+  for(i = 0; i < sizeof(rimeaddr_t) - 1; i++) {
+    printf("%d.", rimeaddr_node_addr.u8[i]);
+  }
+  printf("%d\n", rimeaddr_node_addr.u8[i]);
+  }  
+}
+
+char *get_arch_rime_addr(void);
 int
 main()
 {
@@ -49,11 +71,16 @@ main()
   PRINTF(" on STM32F10x\r\n"); 
   
   uart2_int(115200);
-  
+   
   process_init();
+  
   process_start(&etimer_process, NULL);
   
   ctimer_init();
+  //rtimer_init();
+  
+  //set_rime_addr(XMACADDR);  
+  set_rime_addr(get_arch_rime_addr());
   
 #ifdef WITH_SLIP_NET
   slipnet_init(); 
@@ -62,88 +89,42 @@ main()
   serial_line_init();
 #endif
   
-   /* initialize the netstack */
-  //netstack_init();
-  //NETSTACK_NETWORK.init();
-  
-  memcpy(&uip_lladdr.addr, XMACADDR, sizeof(uip_lladdr.addr));
-#if 1
-#if UIP_CONF_IPV6
-  rimeaddr_set_node_addr((rimeaddr_t *)&XMACADDR);
-#else
-  rimeaddr_set_node_addr((rimeaddr_t *)&XMACADDR[8-RIMEADDR_SIZE]);
-#endif
-  {
-    int i;
-  printf("Rime started with address ");
-  for(i = 0; i < sizeof(rimeaddr_t) - 1; i++) {
-    printf("%d.", rimeaddr_node_addr.u8[i]);
-  }
-  printf("%d\n", rimeaddr_node_addr.u8[i]);
-  }
-#endif //0
 #if UIP_CONF_IPV6
   queuebuf_init();
   process_start(&tcpip_process, NULL);  
 #endif /* UIP_CONF_IPV6 */
-  
-  
-#if UIP_CONF_IPV6
-  
-  printf("Tentative link-local IPv6 address ");
-  
-  {
-    
+ #if  UIP_CONF_IPV6
+{
     uip_ds6_addr_t *lladdr;
-    
     int i;
-    
+    printf("Tentative link-local IPv6 address ");
     lladdr = uip_ds6_get_link_local(-1);
     
-    for(i = 0; i < 7; ++i) {
-      
+    for(i = 0; i < 7; ++i) {     
       printf("%02x%02x:", lladdr->ipaddr.u8[i * 2],
-             
              lladdr->ipaddr.u8[i * 2 + 1]);
-    
     }
-    
     printf("%02x%02x\n", lladdr->ipaddr.u8[14], lladdr->ipaddr.u8[15]);
-  
-  }
-
-
-  
-  if(!UIP_CONF_IPV6_RPL) {
-    
-    uip_ipaddr_t ipaddr;
-    
-    int i;
-    
+}  
+#if !UIP_CONF_IPV6_RPL 
+{
+    uip_ipaddr_t ipaddr; 
+    int i; 
     uip_ip6addr(&ipaddr, 0xaaaa, 0, 0, 0, 0, 0, 0, 0);
-    
     uip_ds6_set_addr_iid(&ipaddr, &uip_lladdr);
-    
-    uip_ds6_addr_add(&ipaddr, 0, ADDR_TENTATIVE);
-    
+    uip_ds6_addr_add(&ipaddr, 0, ADDR_TENTATIVE); 
     printf("Tentative global IPv6 address ");
-    
     for(i = 0; i < 7; ++i) {
-      
-      printf("%02x%02x:",
-             
-             ipaddr.u8[i * 2], ipaddr.u8[i * 2 + 1]);
-    
+      printf("%02x%02x:",     
+        ipaddr.u8[i * 2], ipaddr.u8[i * 2 + 1]);
     }
-    
-    printf("%02x%02x\n",
-           
+    printf("%02x%02x\n",   
            ipaddr.u8[7 * 2], ipaddr.u8[7 * 2 + 1]);
-  
-  }
+}
+#endif //UIP_CONF_IPV6_RPL
+#endif //UIP_CONF_IPV6
 
-#endif /* UIP_CONF_IPV6 */
-  autostart_start(autostart_processes);
+ autostart_start(autostart_processes);
   while(1) {
     do {
     } while(process_run() > 0);

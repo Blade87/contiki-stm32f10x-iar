@@ -3,5 +3,5 @@
 
 void uart1_int(unsigned int bpr);
 void uart1_putc(unsigned char x);
-void uart1_set_input(int(*fun)(unsigned char));
+void  uart1_set_input(int (*)(unsigned char ));
 #endif

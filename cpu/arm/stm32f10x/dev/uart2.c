@@ -3,6 +3,7 @@
 #include "stm32f10x_gpio.h"
 #include "stm32f10x_rcc.h"
 #include "misc.h"
+#include "uart2.h"
 
 
 
@@ -55,7 +56,7 @@ void uart2_putc(unsigned char x)
   while(USART_GetFlagStatus(USART2, USART_FLAG_TXE) == RESET);
 }
 
-static int (*input_call)(unsigned char x) = NULL;
+static int (*input_call)(unsigned char )  = NULL;
 void uart2_set_input(int(*fun)(unsigned char))
 {
   input_call = fun;

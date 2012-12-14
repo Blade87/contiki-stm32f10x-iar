@@ -32,7 +32,7 @@
             <Factory>Workspace</Factory>
             <Session>
               
-            <NodeDict><ExpandedNode>zx103</ExpandedNode><ExpandedNode>zx103/core</ExpandedNode><ExpandedNode>zx103/core/dev</ExpandedNode><ExpandedNode>zx103/core/net</ExpandedNode><ExpandedNode>zx103/core/net/rpl</ExpandedNode><ExpandedNode>zx103/cpu</ExpandedNode><ExpandedNode>zx103/example</ExpandedNode><ExpandedNode>zx103/example/hello-world</ExpandedNode><ExpandedNode>zx103/platform</ExpandedNode><ExpandedNode>zx103/platform/stm32f10x</ExpandedNode><ExpandedNode>zx103/platform/stm32f10x/dev</ExpandedNode><ExpandedNode>zx103/stm32lib</ExpandedNode><ExpandedNode>zx103/stm32lib/lib</ExpandedNode></NodeDict></Session>
+            <NodeDict><ExpandedNode>zx103</ExpandedNode><ExpandedNode>zx103/core</ExpandedNode><ExpandedNode>zx103/core/dev</ExpandedNode><ExpandedNode>zx103/core/sys</ExpandedNode><ExpandedNode>zx103/cpu</ExpandedNode><ExpandedNode>zx103/cpu/arm</ExpandedNode><ExpandedNode>zx103/cpu/arm/stm32f10x</ExpandedNode><ExpandedNode>zx103/cpu/arm/stm32f10x/dev</ExpandedNode><ExpandedNode>zx103/example</ExpandedNode><ExpandedNode>zx103/example/hello-world</ExpandedNode><ExpandedNode>zx103/platform</ExpandedNode><ExpandedNode>zx103/platform/stm32f10x</ExpandedNode><ExpandedNode>zx103/platform/stm32f10x/dev</ExpandedNode><ExpandedNode>zx103/stm32lib</ExpandedNode><ExpandedNode>zx103/stm32lib/lib</ExpandedNode></NodeDict></Session>
           </Tab>
         </Tabs>
         
@@ -52,7 +52,7 @@
       
       
       
-    <Pane/><ActivePane>0</ActivePane><Sizes><Pane><X>1000000</X><Y>1000000</Y></Pane></Sizes><SplitMode>1</SplitMode></Editor>
+    <Pane><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\core\dev\slip.c</Filename><XPos>0</XPos><YPos>81</YPos><SelStart>3228</SelStart><SelEnd>3228</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\platform\stm32f10x\dev\slip-net-6lowpan.c</Filename><XPos>0</XPos><YPos>188</YPos><SelStart>5011</SelStart><SelEnd>5011</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\platform\stm32f10x\contiki-main.c</Filename><XPos>0</XPos><YPos>99</YPos><SelStart>2896</SelStart><SelEnd>2896</SelEnd></Tab><ActiveTab>2</ActiveTab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\core\sys\ctimer.c</Filename><XPos>0</XPos><YPos>60</YPos><SelStart>3038</SelStart><SelEnd>3048</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\core\sys\timer.c</Filename><XPos>0</XPos><YPos>102</YPos><SelStart>3883</SelStart><SelEnd>3896</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\core\net\uip.h</Filename><XPos>0</XPos><YPos>472</YPos><SelStart>13014</SelStart><SelEnd>13014</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\core\net\uip6.c</Filename><XPos>0</XPos><YPos>154</YPos><SelStart>7086</SelStart><SelEnd>7086</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\core\net\rime\rimeaddr.c</Filename><XPos>0</XPos><YPos>55</YPos><SelStart>2590</SelStart><SelEnd>2603</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\platform\stm32f10x\dev\slip-arch.c</Filename><XPos>0</XPos><YPos>41</YPos><SelStart>2129</SelStart><SelEnd>2129</SelEnd></Tab></Pane><ActivePane>0</ActivePane><Sizes><Pane><X>1000000</X><Y>1000000</Y></Pane></Sizes><SplitMode>1</SplitMode></Editor>
     <Positions>
       
       

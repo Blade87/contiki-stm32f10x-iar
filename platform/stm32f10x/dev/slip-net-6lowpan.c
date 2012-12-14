@@ -34,11 +34,6 @@
 #include "dev/slip.h"
 #include <stdio.h>
 
-#define SLIP_END     0300
-#define SLIP_ESC     0333
-#define SLIP_ESC_END 0334
-#define SLIP_ESC_ESC 0335
-
 #define DEBUG 0
 #if DEBUG
 #define PRINTF(...)  printf(__VA_ARGS__)
@@ -59,7 +54,9 @@
 #define UIP_ICMP_BUF          ((struct uip_icmp_hdr *)&uip_buf[UIP_LLIPH_LEN])
 
 
- static rimeaddr_t laddr;
+static rimeaddr_t laddr;
+static rimeaddr_t arch_rime_addr;
+
 /*--------------------------------------------------------------------*/
 
 /*--------------------------------------------------------------------*/
@@ -75,9 +72,6 @@
 static uint8_t
 tip_output(uip_lladdr_t *localdest)
 {
-  uint16_t i;
-  uint8_t *ptr;
-  uint8_t c;
   uint8_t buf[RIMEADDR_SIZE+4];
   
   rimeaddr_t dest;
@@ -101,9 +95,12 @@ tip_output(uip_lladdr_t *localdest)
     rimeaddr_copy(&laddr, (const rimeaddr_t *)localdest);
   }
 #if DEBUG
+  {
+      uint16_t i;
   PRINTF(">>>len(%u) ", uip_len);
   for (i=0; i<uip_len; i++)PRINTF(":%02X", BUF[i]);
   PRINTF("\r\n");
+  }
 #endif
   packetbuf_set_addr(PACKETBUF_ADDR_RECEIVER, &laddr);
   slip_write(&uip_buf[UIP_LLH_LEN], uip_len);
@@ -112,9 +109,7 @@ tip_output(uip_lladdr_t *localdest)
 
 /*---------------------------------------------------------------------------*/
 #include "net/neighbor-info.h"
-#include "net/neighbor-attr.h"
 #include "net/uip-ds6.h"
-#include "net/uip-nd6.h"
 
 
 void slip_input_call(void)
@@ -134,8 +129,7 @@ void slip_input_call(void)
       neighbor_info_packet_sent(BUF[3], BUF[4]);
 #endif
       uip_len = 0;
-    }
-    
+    } else
     if (BUF[1]=='R') { 
 #if SLIPLOWPAN_CONF_NEIGHBOR_INFO
        const rimeaddr_t *src = (const rimeaddr_t *)&BUF[2]; 
@@ -145,10 +139,18 @@ void slip_input_call(void)
         neighbor_info_packet_received();
 #endif
         uip_len = 0;
-    }
+    } else
+      if (BUF[1]=='M') {
+        //set_rime_addr(&BUF[2]);
+        rimeaddr_copy(&arch_rime_addr, (rimeaddr_t *)&BUF[2]);
+         uip_len = 0;
+      }
   }
 
 }
+
+
+
 void
 slipnet_init(void)
 {
@@ -157,10 +159,68 @@ slipnet_init(void)
 
   slip_arch_init(115200);
   process_start(&slip_process, NULL);
-
+ 
 }
 
-
+#define SLIP_END     0300
+#define SLIP_ESC     0333
+#define SLIP_ESC_END 0334
+#define SLIP_ESC_ESC 0335
 /*---------------------------------------------------------------------------*/
+#include "dev/uart2.h"
+static int uart_rbyte(unsigned char c)
+{
+  static unsigned char st = 0;
+  static unsigned char idx = 0;
+  switch(st) {
+  case 0:
+    if (c == SLIP_END){
+      st = 1;
+      idx = 0;
+    } else {
+      if (c=='\r'||c=='\n' || (c>=' ' && c<='~'))printf("%c", c);
+    }
+    return 0;
+  case 1:
+    if (c == SLIP_ESC) {
+      st = 2;
+      return 0;
+    } else if (c == SLIP_END) {
+      /* got packet */
+      if (idx == RIMEADDR_SIZE+2 && uip_buf[0]=='!' && uip_buf[1]=='M') {
+        rimeaddr_copy(&arch_rime_addr, (rimeaddr_t *)&uip_buf[2]); 
+      }
+      idx = 0;
+      st = 0;
+      return 1;
+    }
+    break;
+  case 2:
+    if (c == SLIP_ESC_END) c = SLIP_END,st=1;
+    else if (c == SLIP_ESC_ESC) c = SLIP_ESC,st=1;
+    else st = 0;
+  }
+  if (idx < sizeof(uip_buf)) {
+    uip_buf[idx++] = c; 
+  } else {
+    st = 0;
+    idx = 0;
+  }
+  return 0;
+}
+
+char *get_arch_rime_addr(void)
+{
+  struct timer tm;
+  
+  uart2_set_input(uart_rbyte);
+  while (rimeaddr_cmp(&arch_rime_addr, &rimeaddr_null)) {
+    printf("send rime addr request!\r\n");
+    slip_write("?M", 2); 
+    timer_set(&tm, CLOCK_SECOND*2);
+    while (!timer_expired(&tm));
+  }
+  return (char *)&arch_rime_addr;
+}
 
 /*---------------------------------------------------------------------------*/
