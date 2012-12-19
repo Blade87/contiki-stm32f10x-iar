@@ -124,6 +124,13 @@ main()
 #endif //UIP_CONF_IPV6_RPL
 #endif //UIP_CONF_IPV6
 
+#ifdef WITH_RPL_APP
+{
+  PROCESS_NAME(apprpl_process);
+  process_start(&apprpl_process, NULL);
+}
+#endif
+
  autostart_start(autostart_processes);
   while(1) {
     do {

@@ -57,27 +57,34 @@ typedef unsigned int uip_stats_t;
 #endif
 
 #ifdef WITH_IPV6
+
 #define UIP_CONF_IPV6           1
+
 #define UIP_CONF_ICMP6          0
 #define UIP_CONF_ROUTER         1
-//#define UIP_CONF_IPV6_RPL       1
 #define UIP_CONF_DS6_AADDR_NBU  1
+
 #define UIP_CONF_TCP_FORWARD    0
 
 #define UIP_CONF_ND6_SEND_RA    0
 
+
+#define UIP_CONF_DS6_DEFRT_NBU  2
+#define UIP_CONF_DS6_NBR_NBU    3
+#define UIP_CONF_DS6_ROUTE_NBU  4
+
 #endif
 
 /* uIP configuration */
-#define UIP_CONF_TCP            1
-#define UIP_CONF_UDP            1
+#define UIP_CONF_TCP              1
+#define UIP_CONF_UDP              1
 
-#define UIP_CONF_LLH_LEN         0
-#define UIP_CONF_BROADCAST       1
-#define UIP_CONF_LOGGING         1
-#define UIP_CONF_BUFFER_SIZE    130
+#define UIP_CONF_LLH_LEN          0
+#define UIP_CONF_BROADCAST        1
+#define UIP_CONF_LOGGING          1
+#define UIP_CONF_BUFFER_SIZE      130
 
-
+#define UIP_CONF_ND6_RETRANS_TIMER  3000
 
 /* Prefix for relocation sections in ELF files */
 #define REL_SECT_PREFIX ".rel"

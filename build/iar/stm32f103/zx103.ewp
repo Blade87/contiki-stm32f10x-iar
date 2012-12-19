@@ -1753,6 +1753,7 @@
           <state>WITH_SLIP_NET</state>
           <state>WITH_II_802154</state>
           <state>WITH_RPL</state>
+          <state>WITH_RPL_APP</state>
         </option>
         <option>
           <name>CCPreprocFile</name>
@@ -2847,6 +2848,15 @@
       </group>
       <file>
         <name>$PROJ_DIR$\..\..\..\platform\stm32f10x\contiki-main.c</name>
+      </file>
+    </group>
+  </group>
+  <group>
+    <name>zonesion</name>
+    <group>
+      <name>rpl</name>
+      <file>
+        <name>$PROJ_DIR$\..\..\..\zonesion\rpl\apprpl.c</name>
       </file>
     </group>
   </group>
