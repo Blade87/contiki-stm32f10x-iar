@@ -33,6 +33,12 @@ typedef unsigned int uip_stats_t;
 
 #ifdef WITH_RPL
 #define UIP_CONF_IPV6_RPL            1
+#define UIP_CONF_ROUTER              0
+#ifdef RPL_LEAFONLY
+#define RPL_CONF_LEAF_ONLY           1
+#endif
+
+
 #define RPL_CONF_STATS               0
 #define RPL_CONF_MAX_DAG_ENTRIES     1
 #ifndef RPL_CONF_OF
@@ -40,6 +46,7 @@ typedef unsigned int uip_stats_t;
 #endif  //RPL_CONF_OF
 #else   //WITH_RPL
 #define UIP_CONF_IPV6_RPL       0
+#define UIP_CONF_ROUTER         0
 #endif  //WITH_RPL
 #else //WITH_II_802154
 #define UIP_CONF_LL_802154      0
@@ -61,12 +68,13 @@ typedef unsigned int uip_stats_t;
 #define UIP_CONF_IPV6           1
 
 #define UIP_CONF_ICMP6          0
-#define UIP_CONF_ROUTER         1
+
+
 #define UIP_CONF_DS6_AADDR_NBU  1
 
 #define UIP_CONF_TCP_FORWARD    0
 
-#define UIP_CONF_ND6_SEND_RA    0
+#define UIP_CONF_ND6_SEND_RA    1
 
 
 #define UIP_CONF_DS6_DEFRT_NBU  2

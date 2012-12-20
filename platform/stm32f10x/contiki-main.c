@@ -120,6 +120,17 @@ main()
     }
     printf("%02x%02x\n",   
            ipaddr.u8[7 * 2], ipaddr.u8[7 * 2 + 1]);
+    
+    //uip_ip6addr(&ipaddr, 0xaaaa, 0, 0, 0, 0, 0, 0, 0);
+    uip_ip6addr(&ipaddr, 0xaaaa, 0, 0, 0, 0x212, 0x4b00, 0x237, 0x7e30);
+    uip_ds6_defrt_add(&ipaddr, 0);
+    printf("default router ");
+    for(i = 0; i < 7; ++i) {
+      printf("%02x%02x:",     
+        ipaddr.u8[i * 2], ipaddr.u8[i * 2 + 1]);
+    }
+    printf("%02x%02x\n",   
+           ipaddr.u8[7 * 2], ipaddr.u8[7 * 2 + 1]);
 }
 #endif //UIP_CONF_IPV6_RPL
 #endif //UIP_CONF_IPV6

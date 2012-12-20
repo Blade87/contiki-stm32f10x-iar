@@ -50,10 +50,10 @@ static void ondr_report(void)
   int i, n=0;
 
   UIP_UDP_BUF[0] = 'O';
-#if UIP_CONF_IPV6_RPL  
-  UIP_UDP_BUF[1] = 2;
-#else
+#if RPL_CONF_LEAF_ONLY  
   UIP_UDP_BUF[1] = 3;
+#else
+  UIP_UDP_BUF[1] = 2;
 #endif
   uip_len = 2;
   
