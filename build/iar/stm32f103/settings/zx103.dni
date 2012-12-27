@@ -11,7 +11,7 @@ ActionState=1
 Enabled=0
 ShowSource=1
 [DebugChecksum]
-Checksum=-2107165622
+Checksum=-620957963
 [DisAssemblyWindow]
 NumStates=_ 1
 State 1=_ 1
@@ -32,17 +32,6 @@ TriggerName=main
 LimitSize=0
 ByteLimit=50
 
-[Log file]
-LoggingEnabled=_ 0
-LogFile=_ ""
-Category=_ 0
-[TermIOLog]
-LoggingEnabled=_ 0
-LogFile=_ ""
-[DriverProfiling]
-Enabled=0
-Source=2
-Graph=0
 [Disassemble mode]
 mode=0
 [Breakpoints]
@@ -69,6 +58,13 @@ Bp19=_ "EMUL_DATA" "uip_icmp6chksum" 1 0 0 116 0 "" 0 "" 0 0 0 4294967295
 Bp20=_ "EMUL_DATA" "uip_ds6_set_addr_iid" 0 0 0 116 0 "" 0 "" 0 0 0 4294967295
 Bp21=_ "EMUL_DATA" "uip_udp_packet_send" 0 0 0 116 0 "" 0 "" 0 0 0 4294967295
 Count=22
+[Log file]
+LoggingEnabled=_ 0
+LogFile=_ ""
+Category=_ 0
+[TermIOLog]
+LoggingEnabled=_ 0
+LogFile=_ ""
 [Aliases]
 A0=_ "I:\zonesion\ipv6实验箱\code\contiki-2.6-stm32f103\core\net\rpl\rpl-of-etx.c" ""
 A1=_ "I:\zonesion\ipv6实验箱\code\contiki-2.6-stm32f103\core\net\rpl\rpl-timers.c" ""
@@ -76,3 +72,7 @@ A2=_ "I:\zonesion\ipv6实验箱\code\contiki-2.6-stm32f103\cpu\arm\stm32f10x\STM32F
 A3=_ "I:\zonesion\ipv6实验箱\code\contiki-2.6-stm32f103\platform\stm32f10x\contiki-main.c" ""
 Count=4
 SuppressDialog=1
+[DriverProfiling]
+Enabled=0
+Source=2
+Graph=0

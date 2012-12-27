@@ -952,7 +952,9 @@
           <state>WITH_SLIP_NET</state>
           <state>WITH_II_802154</state>
           <state>WITH_RPL</state>
-          <state>WITH_RPL_APP</state>
+          <state>xWITH_RPL_APP</state>
+          <state>WITH_COAP=7</state>
+          <state>REST=coap_rest_implementation</state>
         </option>
         <option>
           <name>CCPreprocFile</name>
@@ -1091,6 +1093,8 @@
           <state>$PROJ_DIR$\..\..\..\core\lib</state>
           <state>$PROJ_DIR$\..\..\..\core\net</state>
           <state>$PROJ_DIR$\..\..\..\core\net\rpl</state>
+          <state>$PROJ_DIR$\..\..\..\apps\erbium</state>
+          <state>$PROJ_DIR$\..\..\..\apps\er-coap-07</state>
           <state>$PROJ_DIR$\..\..\..\cpu\arm\stm32f10x</state>
           <state>$PROJ_DIR$\..\..\..\platform\stm32f10x</state>
           <state>$PROJ_DIR$\..\..\..\cpu\arm\stm32f10x\STM32F10x_StdPeriph_Lib_V3.5.0\Libraries\CMSIS\CM3\DeviceSupport\ST\STM32F10x</state>
@@ -2412,6 +2416,33 @@
     </settings>
   </configuration>
   <group>
+    <name>apps</name>
+    <group>
+      <name>er-coap-07</name>
+      <file>
+        <name>$PROJ_DIR$\..\..\..\apps\er-coap-07\er-coap-07-engine.c</name>
+      </file>
+      <file>
+        <name>$PROJ_DIR$\..\..\..\apps\er-coap-07\er-coap-07-observing.c</name>
+      </file>
+      <file>
+        <name>$PROJ_DIR$\..\..\..\apps\er-coap-07\er-coap-07-separate.c</name>
+      </file>
+      <file>
+        <name>$PROJ_DIR$\..\..\..\apps\er-coap-07\er-coap-07-transactions.c</name>
+      </file>
+      <file>
+        <name>$PROJ_DIR$\..\..\..\apps\er-coap-07\er-coap-07.c</name>
+      </file>
+    </group>
+    <group>
+      <name>erbium</name>
+      <file>
+        <name>$PROJ_DIR$\..\..\..\apps\erbium\erbium.c</name>
+      </file>
+    </group>
+  </group>
+  <group>
     <name>core</name>
     <group>
       <name>dev</name>
@@ -2822,7 +2853,19 @@
   <group>
     <name>example</name>
     <group>
+      <name>er-rest-example</name>
+      <excluded>
+        <configuration>rpl</configuration>
+      </excluded>
+      <file>
+        <name>$PROJ_DIR$\..\..\..\examples\er-rest-example\er-example-server.c</name>
+      </file>
+    </group>
+    <group>
       <name>hello-world</name>
+      <excluded>
+        <configuration>rpl</configuration>
+      </excluded>
       <file>
         <name>$PROJ_DIR$\..\..\..\examples\hello-world\hello-world.c</name>
       </file>
@@ -2859,9 +2902,24 @@
   <group>
     <name>zonesion</name>
     <group>
-      <name>rpl</name>
+      <name>er-app</name>
+      <group>
+        <name>resource</name>
+        <file>
+          <name>$PROJ_DIR$\..\..\..\zonesion\er-app\resource\helloworld.c</name>
+        </file>
+        <file>
+          <name>$PROJ_DIR$\..\..\..\zonesion\er-app\resource\uipv6.c</name>
+        </file>
+        <file>
+          <name>$PROJ_DIR$\..\..\..\zonesion\er-app\resource\voltage.c</name>
+        </file>
+      </group>
       <file>
-        <name>$PROJ_DIR$\..\..\..\zonesion\rpl\apprpl.c</name>
+        <name>$PROJ_DIR$\..\..\..\zonesion\er-app\er-app.c</name>
+      </file>
+      <file>
+        <name>$PROJ_DIR$\..\..\..\zonesion\er-app\er-apps.h</name>
       </file>
     </group>
   </group>

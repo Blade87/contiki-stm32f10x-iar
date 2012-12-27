@@ -78,8 +78,8 @@ typedef unsigned int uip_stats_t;
 
 
 #define UIP_CONF_DS6_DEFRT_NBU  2
+#define UIP_CONF_DS6_ROUTE_NBU  3
 #define UIP_CONF_DS6_NBR_NBU    3
-#define UIP_CONF_DS6_ROUTE_NBU  4
 
 #endif
 
@@ -91,6 +91,9 @@ typedef unsigned int uip_stats_t;
 #define UIP_CONF_BROADCAST        1
 #define UIP_CONF_LOGGING          1
 #define UIP_CONF_BUFFER_SIZE      130
+#ifndef UIP_CONF_RECEIVE_WINDOW
+#define UIP_CONF_RECEIVE_WINDOW  50
+#endif
 
 #define UIP_CONF_ND6_RETRANS_TIMER  3000
 
@@ -102,5 +105,10 @@ typedef unsigned int uip_stats_t;
 #define USB_EP1_SIZE 64
 #define USB_EP2_SIZE 64
 
+#undef RAND_MAX
 #define RAND_MAX 0x7fff
+
+/* REST CONFIG*/
+#define   REST_MAX_CHUNK_SIZE 32
+
 #endif /* __CONTIKI_CONF_H__CDBB4VIH3I__ */
