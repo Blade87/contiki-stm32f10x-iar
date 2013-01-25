@@ -12,7 +12,7 @@
           
           
           
-        <Column0>224</Column0><Column1>27</Column1><Column2>27</Column2><Column3>27</Column3></ColumnWidths>
+        <Column0>119</Column0><Column1>27</Column1><Column2>27</Column2><Column3>27</Column3></ColumnWidths>
       </Workspace>
       <Build>
         
@@ -20,11 +20,11 @@
         
         
       <ColumnWidth0>20</ColumnWidth0><ColumnWidth1>561</ColumnWidth1><ColumnWidth2>149</ColumnWidth2><ColumnWidth3>37</ColumnWidth3></Build>
-    <Debug-Log><ColumnWidth0>21</ColumnWidth0><ColumnWidth1>1306</ColumnWidth1></Debug-Log><TerminalIO/><Disassembly><PreferedWindows><Position>4</Position><ScreenPosX>978</ScreenPosX><ScreenPosY>284</ScreenPosY><Windows><Window><Factory>Register</Factory></Window><Window><Factory>QuickWatch</Factory></Window><Window><Factory>Watch</Factory></Window></Windows></PreferedWindows><MixedMode>1</MixedMode><CodeCovShow>0</CodeCovShow><InstrProfShow>0</InstrProfShow></Disassembly><Register><PreferedWindows><Position>4</Position><ScreenPosX>978</ScreenPosX><ScreenPosY>284</ScreenPosY><Windows><Window><Factory>QuickWatch</Factory></Window><Window><Factory>Watch</Factory></Window><Window><Factory>Disassembly</Factory></Window></Windows></PreferedWindows></Register><QuickWatch><PreferedWindows><Position>4</Position><ScreenPosX>1049</ScreenPosX><ScreenPosY>193</ScreenPosY><Windows/></PreferedWindows></QuickWatch><Watch><PreferedWindows><Position>4</Position><ScreenPosX>978</ScreenPosX><ScreenPosY>284</ScreenPosY><Windows><Window><Factory>Register</Factory></Window><Window><Factory>QuickWatch</Factory></Window><Window><Factory>Disassembly</Factory></Window></Windows></PreferedWindows></Watch></Static>
+    <Debug-Log><ColumnWidth0>21</ColumnWidth0><ColumnWidth1>1306</ColumnWidth1></Debug-Log><TerminalIO/><Disassembly><PreferedWindows><Position>4</Position><ScreenPosX>838</ScreenPosX><ScreenPosY>440</ScreenPosY><Windows/></PreferedWindows><MixedMode>1</MixedMode><CodeCovShow>0</CodeCovShow><InstrProfShow>0</InstrProfShow></Disassembly><Register><PreferedWindows><Position>4</Position><ScreenPosX>978</ScreenPosX><ScreenPosY>284</ScreenPosY><Windows><Window><Factory>QuickWatch</Factory></Window><Window><Factory>Watch</Factory></Window><Window><Factory>Disassembly</Factory></Window></Windows></PreferedWindows></Register><QuickWatch><PreferedWindows><Position>4</Position><ScreenPosX>1049</ScreenPosX><ScreenPosY>193</ScreenPosY><Windows/></PreferedWindows></QuickWatch><Watch><PreferedWindows><Position>4</Position><ScreenPosX>978</ScreenPosX><ScreenPosY>284</ScreenPosY><Windows><Window><Factory>Register</Factory></Window><Window><Factory>QuickWatch</Factory></Window><Window><Factory>Disassembly</Factory></Window></Windows></PreferedWindows></Watch></Static>
     <Windows>
       
       
-    <Wnd0>
+    <Wnd2>
         <Tabs>
           <Tab>
             <Identity>TabID-7572-21418</Identity>
@@ -32,11 +32,11 @@
             <Factory>Workspace</Factory>
             <Session>
               
-            <NodeDict><ExpandedNode>zx103</ExpandedNode><ExpandedNode>zx103/apps</ExpandedNode><ExpandedNode>zx103/apps/er-coap-07</ExpandedNode><ExpandedNode>zx103/example</ExpandedNode><ExpandedNode>zx103/example/er-rest-example</ExpandedNode><ExpandedNode>zx103/platform</ExpandedNode><ExpandedNode>zx103/platform/stm32f10x</ExpandedNode><ExpandedNode>zx103/stm32lib</ExpandedNode><ExpandedNode>zx103/stm32lib/lib</ExpandedNode><ExpandedNode>zx103/zonesion</ExpandedNode><ExpandedNode>zx103/zonesion/er-app</ExpandedNode><ExpandedNode>zx103/zonesion/er-app/resource</ExpandedNode><ExpandedNode>zx103/zonesion/rpl</ExpandedNode></NodeDict></Session>
+            <NodeDict><ExpandedNode>zx103</ExpandedNode><ExpandedNode>zx103/platform</ExpandedNode><ExpandedNode>zx103/platform/stm32f10x</ExpandedNode><ExpandedNode>zx103/platform/stm32f10x/dev</ExpandedNode><ExpandedNode>zx103/stm32lib</ExpandedNode><ExpandedNode>zx103/stm32lib/lib</ExpandedNode><ExpandedNode>zx103/zonesion</ExpandedNode><ExpandedNode>zx103/zonesion/er-app</ExpandedNode><ExpandedNode>zx103/zonesion/er-app/resource</ExpandedNode><ExpandedNode>zx103/zonesion/sensor</ExpandedNode></NodeDict></Session>
           </Tab>
         </Tabs>
         
-      <SelectedTab>0</SelectedTab></Wnd0><Wnd1>
+      <SelectedTab>0</SelectedTab></Wnd2><Wnd3>
         <Tabs>
           <Tab>
             <Identity>TabID-4247-25369</Identity>
@@ -46,20 +46,20 @@
           </Tab>
         <Tab><Identity>TabID-16088-21854</Identity><TabName>Debug Log</TabName><Factory>Debug-Log</Factory><Session/></Tab></Tabs>
         
-      <SelectedTab>0</SelectedTab></Wnd1></Windows>
+      <SelectedTab>0</SelectedTab></Wnd3></Windows>
     <Editor>
       
       
       
       
-    <Pane><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\platform\stm32f10x\contiki-main.c</Filename><XPos>0</XPos><YPos>35</YPos><SelStart>1814</SelStart><SelEnd>1814</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\apps\er-coap-07\er-coap-07-engine.c</Filename><XPos>0</XPos><YPos>425</YPos><SelStart>16083</SelStart><SelEnd>16083</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\apps\erbium\erbium.c</Filename><XPos>0</XPos><YPos>170</YPos><SelStart>6093</SelStart><SelEnd>6093</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\platform\stm32f10x\contiki-conf.h</Filename><XPos>0</XPos><YPos>72</YPos><SelStart>1748</SelStart><SelEnd>1748</SelEnd></Tab><ActiveTab>3</ActiveTab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\zonesion\er-app\resource\uipv6.c</Filename><XPos>0</XPos><YPos>78</YPos><SelStart>3194</SelStart><SelEnd>3210</SelEnd></Tab><Tab><Factory>TextEditor</Factory><Filename>$WS_DIR$\..\..\..\core\net\uip-ds6.h</Filename><XPos>0</XPos><YPos>60</YPos><SelStart>2789</SelStart><SelEnd>2811</SelEnd></Tab></Pane><ActivePane>0</ActivePane><Sizes><Pane><X>1000000</X><Y>1000000</Y></Pane></Sizes><SplitMode>1</SplitMode></Editor>
+    <Pane/><ActivePane>0</ActivePane><Sizes><Pane><X>1000000</X><Y>1000000</Y></Pane></Sizes><SplitMode>1</SplitMode></Editor>
     <Positions>
       
       
       
       
       
-    <Top><Row0><Sizes><Toolbar-00b09a90><key>iaridepm.enu1</key></Toolbar-00b09a90></Sizes></Row0><Row1><Sizes/></Row1></Top><Left><Row0><Sizes><Wnd0><Rect><Top>-2</Top><Left>-2</Left><Bottom>480</Bottom><Right>315</Right><x>-2</x><y>-2</y><xscreen>45</xscreen><yscreen>198</yscreen><sizeHorzCX>32943</sizeHorzCX><sizeHorzCY>286127</sizeHorzCY><sizeVertCX>232064</sizeVertCX><sizeVertCY>696532</sizeVertCY></Rect></Wnd0></Sizes></Row0></Left><Right><Row0><Sizes/></Row0></Right><Bottom><Row0><Sizes><Wnd1><Rect><Top>-2</Top><Left>-2</Left><Bottom>167</Bottom><Right>1368</Right><x>-2</x><y>-2</y><xscreen>1370</xscreen><yscreen>169</yscreen><sizeHorzCX>1002928</sizeHorzCX><sizeHorzCY>244220</sizeHorzCY><sizeVertCX>32943</sizeVertCX><sizeVertCY>286127</sizeVertCY></Rect></Wnd1></Sizes></Row0></Bottom><Float><Sizes/></Float></Positions>
+    <Top><Row0><Sizes><Toolbar-00b09a40><key>iaridepm.enu1</key></Toolbar-00b09a40></Sizes></Row0><Row1><Sizes/></Row1></Top><Left><Row0><Sizes><Wnd2><Rect><Top>-2</Top><Left>-2</Left><Bottom>446</Bottom><Right>210</Right><x>-2</x><y>-2</y><xscreen>23</xscreen><yscreen>177</yscreen><sizeHorzCX>20928</sizeHorzCX><sizeHorzCY>265367</sizeHorzCY><sizeVertCX>192903</sizeVertCX><sizeVertCY>671664</sizeVertCY></Rect></Wnd2></Sizes></Row0></Left><Right><Row0><Sizes/></Row0></Right><Bottom><Row0><Sizes><Wnd3><Rect><Top>-2</Top><Left>-2</Left><Bottom>176</Bottom><Right>1101</Right><x>-2</x><y>-2</y><xscreen>1103</xscreen><yscreen>178</yscreen><sizeHorzCX>1003640</sizeHorzCX><sizeHorzCY>266867</sizeHorzCY><sizeVertCX>20928</sizeVertCX><sizeVertCY>265367</sizeVertCY></Rect></Wnd3></Sizes></Row0></Bottom><Float><Sizes/></Float></Positions>
   </Desktop>
 </Workspace>
 

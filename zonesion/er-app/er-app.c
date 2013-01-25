@@ -13,6 +13,9 @@
 #warning "Erbium example without CoAP-specifc functionality"
 #endif /* CoAP-specific example */
 
+#include "sensors.h"
+#include "dev/button-sensor.h"
+
 #define DEBUG 1
 #if DEBUG
 #define PRINTF(...) printf(__VA_ARGS__)
@@ -27,7 +30,7 @@
 #include "er-apps.h"
 
 PROCESS(rest_server_er_app, "Erbium Application Server");
-AUTOSTART_PROCESSES(&rest_server_er_app);
+//AUTOSTART_PROCESSES(&rest_server_er_app);
 
 PROCESS_THREAD(rest_server_er_app, ev, data)
 {
@@ -42,33 +45,58 @@ PROCESS_THREAD(rest_server_er_app, ev, data)
 #if RS_HELLOWORLD
   rest_activate_resource(&resource_helloworld);
 #endif
+
+#if RS_LEDS
+  rest_activate_resource(&resource_leds);
+#endif
+  
+#if RS_BUTTON
+  rest_activate_event_resource(&resource_button);
+#endif
   
 #if RS_VOLTAGE
+#if VOLTAGE_PERIODIC
    rest_activate_periodic_resource(&periodic_resource_voltage);
+#else
+  rest_activate_event_resource(&resource_voltage);
+#endif
 #endif
 
+#if RS_TANDH
+#if TANDH_PERIODIC
+   rest_activate_periodic_resource(&periodic_resource_DHT11);
+#else
+  rest_activate_event_resource(&resource_DHT11);
+#endif
+#endif
+  
 #if RS_UIPV6
   rest_activate_periodic_resource(&periodic_resource_uipv6); 
 #endif
   
-  
+  rest_activate_event_resource(&resource_DI1);
+  rest_activate_periodic_resource(&periodic_resource_AI1);
+  rest_activate_resource(&resource_DO1);
+  rest_activate_resource(&resource_AO1);
   
   /* Define application-specific events here. */
   while(1) {
     PROCESS_WAIT_EVENT();
-#if defined (PLATFORM_HAS_BUTTON)
-    if (ev == sensors_event && data == &button_sensor) {
-      PRINTF("BUTTON\n");
-#if REST_RES_EVENT
+
+    if (ev == sensors_event) {
+#if RS_BUTTON
+      if (data == &button_sensor) {
       /* Call the event_handler for this application-specific event. */
-      event_event_handler(&resource_event);
+        button_event_handler(&resource_button);
+      }
 #endif
+      
 #if REST_RES_SEPARATE && WITH_COAP>3
       /* Also call the separate response example handler. */
       separate_finalize_handler();
 #endif
     }
-#endif /* PLATFORM_HAS_BUTTON */
+
   } /* while (1) */
 
   PROCESS_END();

@@ -26,42 +26,42 @@
 
 #include "../er-apps.h"
 
-#if VOLTAGE_PERIODIC
-PERIODIC_RESOURCE(voltage, METHOD_GET, "voltage", "title=\"Periodic voltage check\";obs", 5*CLOCK_SECOND);
+#if TANDH_PERIODIC
+PERIODIC_RESOURCE(DHT11, METHOD_GET, "sensor/DHT11", "title=\"Periodic Temperature and humidity\";obs", 5*CLOCK_SECOND);
 #else
-RESOURCE(voltage, METHOD_GET, "voltage", "title=\"Periodic voltage check\"");
+RESOURCE(DHT11, METHOD_GET, "sensor/DHT11", "title=\" Temperature and humidity\"");
 #endif
 
-static char *get_voltage(void)
+static char *get_tandh(void)
 {
   unsigned int v;
-  static char buf[16];
+  static char buf[32];
   
   v = random_rand()%3;
-  snprintf(buf, sizeof(buf), "{\"voltage\":3.%u}", v);
+  snprintf(buf, sizeof(buf), "%u,%u", 23+v, 50+v);
   
   return buf;
 }
 
 void
-voltage_handler(void* request, void* response, uint8_t *buffer, uint16_t preferred_size, int32_t *offset)
+DHT11_handler(void* request, void* response, uint8_t *buffer, uint16_t preferred_size, int32_t *offset)
 {
-  char *msg = get_voltage();
+  char *msg = get_tandh();
   
-  REST.set_header_content_type(response, REST.type.APPLICATION_JSON);
+  REST.set_header_content_type(response, REST.type.TEXT_PLAIN);
 
   /* Usually, a CoAP server would response with the resource representation matching the periodic_handler. */
   REST.set_response_payload(response, msg, strlen(msg));
 
   /* A post_handler that handles subscriptions will be called for periodic resources by the REST framework. */
 }
-#if VOLTAGE_PERIODIC
+#if TANDH_PERIODIC
 void
-voltage_periodic_handler(resource_t *r)
+DHT11_periodic_handler(resource_t *r)
 {
   static uint16_t obs_counter = 0;
  
-  char *msg = get_voltage();
+  char *msg = get_tandh();
   ++obs_counter;
 
   //PRINTF("TICK %u for /%s\n", obs_counter, r->url);
@@ -69,7 +69,7 @@ voltage_periodic_handler(resource_t *r)
   /* Build notification. */
   coap_packet_t notification[1]; /* This way the packet can be treated as pointer as usual. */
   coap_init_message(notification, COAP_TYPE_NON, CONTENT_2_05, 0);
-  REST.set_header_content_type(notification, REST.type.APPLICATION_JSON);
+  REST.set_header_content_type(notification, REST.type.TEXT_PLAIN);
   coap_set_payload(notification, msg, strlen(msg));
 
   /* Notify the registered observers with the given message type, observe option, and payload. */

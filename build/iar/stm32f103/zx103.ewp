@@ -955,6 +955,7 @@
           <state>xWITH_RPL_APP</state>
           <state>WITH_COAP=7</state>
           <state>REST=coap_rest_implementation</state>
+          <state>xWITH_CTK=1</state>
         </option>
         <option>
           <name>CCPreprocFile</name>
@@ -1096,10 +1097,10 @@
           <state>$PROJ_DIR$\..\..\..\apps\erbium</state>
           <state>$PROJ_DIR$\..\..\..\apps\er-coap-07</state>
           <state>$PROJ_DIR$\..\..\..\cpu\arm\stm32f10x</state>
-          <state>$PROJ_DIR$\..\..\..\platform\stm32f10x</state>
           <state>$PROJ_DIR$\..\..\..\cpu\arm\stm32f10x\STM32F10x_StdPeriph_Lib_V3.5.0\Libraries\CMSIS\CM3\DeviceSupport\ST\STM32F10x</state>
           <state>$PROJ_DIR$\..\..\..\cpu\arm\stm32f10x\STM32F10x_StdPeriph_Lib_V3.5.0\Libraries\CMSIS\CM3\CoreSupport</state>
           <state>$PROJ_DIR$\..\..\..\cpu\arm\stm32f10x\STM32F10x_StdPeriph_Lib_V3.5.0\Libraries\STM32F10x_StdPeriph_Driver\inc</state>
+          <state>$PROJ_DIR$\..\..\..\zonesion</state>
         </option>
         <option>
           <name>CCStdIncCheck</name>
@@ -2445,6 +2446,15 @@
   <group>
     <name>core</name>
     <group>
+      <name>ctk</name>
+      <file>
+        <name>$PROJ_DIR$\..\..\..\core\ctk\ctk-conio.c</name>
+      </file>
+      <file>
+        <name>$PROJ_DIR$\..\..\..\core\ctk\ctk.c</name>
+      </file>
+    </group>
+    <group>
       <name>dev</name>
       <file>
         <name>$PROJ_DIR$\..\..\..\core\dev\leds.c</name>
@@ -2504,6 +2514,9 @@
       </file>
       <file>
         <name>$PROJ_DIR$\..\..\..\core\lib\libconio.c</name>
+        <excluded>
+          <configuration>rpl</configuration>
+        </excluded>
       </file>
       <file>
         <name>$PROJ_DIR$\..\..\..\core\lib\list.c</name>
@@ -2834,10 +2847,16 @@
               <name>$PROJ_DIR$\..\..\..\cpu\arm\stm32f10x\STM32F10x_StdPeriph_Lib_V3.5.0\Libraries\STM32F10x_StdPeriph_Driver\src\misc.c</name>
             </file>
             <file>
+              <name>$PROJ_DIR$\..\..\..\cpu\arm\stm32f10x\STM32F10x_StdPeriph_Lib_V3.5.0\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_exti.c</name>
+            </file>
+            <file>
               <name>$PROJ_DIR$\..\..\..\cpu\arm\stm32f10x\STM32F10x_StdPeriph_Lib_V3.5.0\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_gpio.c</name>
             </file>
             <file>
               <name>$PROJ_DIR$\..\..\..\cpu\arm\stm32f10x\STM32F10x_StdPeriph_Lib_V3.5.0\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_rcc.c</name>
+            </file>
+            <file>
+              <name>$PROJ_DIR$\..\..\..\cpu\arm\stm32f10x\STM32F10x_StdPeriph_Lib_V3.5.0\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_spi.c</name>
             </file>
             <file>
               <name>$PROJ_DIR$\..\..\..\cpu\arm\stm32f10x\STM32F10x_StdPeriph_Lib_V3.5.0\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_usart.c</name>
@@ -2872,41 +2891,61 @@
     </group>
   </group>
   <group>
-    <name>platform</name>
+    <name>zonesion</name>
     <group>
-      <name>stm32f10x</name>
-      <group>
-        <name>dev</name>
-        <file>
-          <name>$PROJ_DIR$\..\..\..\platform\stm32f10x\dev\slip-arch.c</name>
-        </file>
-        <file>
-          <name>$PROJ_DIR$\..\..\..\platform\stm32f10x\dev\slip-net-6lowpan.c</name>
-          <excluded>
-            <configuration>Normal</configuration>
-          </excluded>
-        </file>
-        <file>
-          <name>$PROJ_DIR$\..\..\..\platform\stm32f10x\dev\slip-net.c</name>
-          <excluded>
-            <configuration>rpl</configuration>
-            <configuration>rpl-leaf</configuration>
-          </excluded>
-        </file>
-      </group>
+      <name>ctk</name>
       <file>
-        <name>$PROJ_DIR$\..\..\..\platform\stm32f10x\contiki-main.c</name>
+        <name>$PROJ_DIR$\..\..\..\zonesion\ctk\conio.c</name>
+      </file>
+      <file>
+        <name>$PROJ_DIR$\..\..\..\zonesion\ctk\ctk-conf.h</name>
+      </file>
+      <file>
+        <name>$PROJ_DIR$\..\..\..\zonesion\ctk\ctk-lcd.c</name>
+      </file>
+      <file>
+        <name>$PROJ_DIR$\..\..\..\zonesion\ctk\ctk-test.c</name>
       </file>
     </group>
-  </group>
-  <group>
-    <name>zonesion</name>
+    <group>
+      <name>dev</name>
+      <file>
+        <name>$PROJ_DIR$\..\..\..\zonesion\dev\leds-arch.c</name>
+      </file>
+      <file>
+        <name>$PROJ_DIR$\..\..\..\zonesion\dev\slip-arch.c</name>
+      </file>
+      <file>
+        <name>$PROJ_DIR$\..\..\..\zonesion\dev\slip-net-6lowpan.c</name>
+      </file>
+      <file>
+        <name>$PROJ_DIR$\..\..\..\zonesion\dev\slip-net.c</name>
+        <excluded>
+          <configuration>rpl</configuration>
+        </excluded>
+      </file>
+      <file>
+        <name>$PROJ_DIR$\..\..\..\zonesion\dev\spi_lcd.c</name>
+      </file>
+    </group>
     <group>
       <name>er-app</name>
       <group>
         <name>resource</name>
         <file>
+          <name>$PROJ_DIR$\..\..\..\zonesion\er-app\resource\button.c</name>
+        </file>
+        <file>
+          <name>$PROJ_DIR$\..\..\..\zonesion\er-app\resource\dht11.c</name>
+        </file>
+        <file>
           <name>$PROJ_DIR$\..\..\..\zonesion\er-app\resource\helloworld.c</name>
+        </file>
+        <file>
+          <name>$PROJ_DIR$\..\..\..\zonesion\er-app\resource\rsgen.c</name>
+        </file>
+        <file>
+          <name>$PROJ_DIR$\..\..\..\zonesion\er-app\resource\rsleds.c</name>
         </file>
         <file>
           <name>$PROJ_DIR$\..\..\..\zonesion\er-app\resource\uipv6.c</name>
@@ -2922,6 +2961,21 @@
         <name>$PROJ_DIR$\..\..\..\zonesion\er-app\er-apps.h</name>
       </file>
     </group>
+    <group>
+      <name>sensor</name>
+      <file>
+        <name>$PROJ_DIR$\..\..\..\zonesion\sensor\button-sensor.c</name>
+      </file>
+      <file>
+        <name>$PROJ_DIR$\..\..\..\zonesion\sensor\z-sensors.c</name>
+      </file>
+    </group>
+    <file>
+      <name>$PROJ_DIR$\..\..\..\zonesion\contiki-conf.h</name>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\..\..\..\zonesion\contiki-main.c</name>
+    </file>
   </group>
 </project>
 

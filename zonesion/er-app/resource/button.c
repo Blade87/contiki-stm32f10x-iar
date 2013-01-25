@@ -4,6 +4,8 @@
 #include "contiki.h"
 #include "contiki-net.h"
 
+#include "dev/button-sensor.h"
+
 /* For CoAP-specific example: not required for normal RESTful Web service. */
 #if WITH_COAP == 3
 #include "er-coap-03.h"
@@ -24,55 +26,46 @@
 #define PRINTLLADDR(addr)
 #endif
 
-#include "../er-apps.h"
 
-#if VOLTAGE_PERIODIC
-PERIODIC_RESOURCE(voltage, METHOD_GET, "voltage", "title=\"Periodic voltage check\";obs", 5*CLOCK_SECOND);
-#else
-RESOURCE(voltage, METHOD_GET, "voltage", "title=\"Periodic voltage check\"");
-#endif
 
-static char *get_voltage(void)
+/*
+ * Example for an event resource.
+ * Additionally takes a period parameter that defines the interval to call [name]_periodic_handler().
+ * A default post_handler takes care of subscriptions and manages a list of subscribers to notify.
+ */
+EVENT_RESOURCE(button, METHOD_GET, "sensor/button", "title=\"Event demo\";obs");
+
+static void
+button_handler(void* request, void* response, uint8_t *buffer, uint16_t preferred_size, int32_t *offset)
 {
-  unsigned int v;
-  static char buf[16];
-  
-  v = random_rand()%3;
-  snprintf(buf, sizeof(buf), "{\"voltage\":3.%u}", v);
-  
-  return buf;
+  REST.set_header_content_type(response, REST.type.TEXT_PLAIN);
+  /* Usually, a CoAP server would response with the current resource representation. */
+  const char *msg = "It's eventful!";
+  REST.set_response_payload(response, (uint8_t *)msg, strlen(msg));
+
+  /* A post_handler that handles subscriptions/observing will be called for periodic resources by the framework. */
 }
 
+/* Additionally, a handler function named [resource name]_event_handler must be implemented for each PERIODIC_RESOURCE defined.
+ * It will be called by the REST manager process with the defined period. */
 void
-voltage_handler(void* request, void* response, uint8_t *buffer, uint16_t preferred_size, int32_t *offset)
+button_event_handler(resource_t *r)
 {
-  char *msg = get_voltage();
-  
-  REST.set_header_content_type(response, REST.type.APPLICATION_JSON);
+  static uint16_t event_counter = 0;
+  char content[32];
 
-  /* Usually, a CoAP server would response with the resource representation matching the periodic_handler. */
-  REST.set_response_payload(response, msg, strlen(msg));
+  ++event_counter;
 
-  /* A post_handler that handles subscriptions will be called for periodic resources by the REST framework. */
-}
-#if VOLTAGE_PERIODIC
-void
-voltage_periodic_handler(resource_t *r)
-{
-  static uint16_t obs_counter = 0;
- 
-  char *msg = get_voltage();
-  ++obs_counter;
-
-  //PRINTF("TICK %u for /%s\n", obs_counter, r->url);
+  PRINTF("TICK %u for /%s\n", event_counter, r->url);
 
   /* Build notification. */
   coap_packet_t notification[1]; /* This way the packet can be treated as pointer as usual. */
   coap_init_message(notification, COAP_TYPE_NON, CONTENT_2_05, 0);
   REST.set_header_content_type(notification, REST.type.APPLICATION_JSON);
-  coap_set_payload(notification, msg, strlen(msg));
+  coap_set_payload(notification, content, snprintf(content, sizeof(content), 
+                                                   "{\"value\":%u,\"count\":%u}", 
+                                                   button_sensor.value(0),event_counter));
 
   /* Notify the registered observers with the given message type, observe option, and payload. */
-  REST.notify_subscribers(r, obs_counter, notification);
+  REST.notify_subscribers(r, event_counter, notification);
 }
-#endif

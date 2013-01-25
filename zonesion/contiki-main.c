@@ -10,6 +10,7 @@
 #include <etimer.h>
 #include <sys/autostart.h>
 #include <clock.h>
+#include <ctk/ctk.h>
 
 #include "contiki.h"
 #include "contiki-lib.h"
@@ -20,6 +21,7 @@
 #include "dev/uart2.h"
 #include "dev/slip-net.h"
 #include "sensors.h"
+#include "dev/leds.h"
 
 #include <string.h>
 
@@ -36,7 +38,7 @@
 #endif
 
 unsigned int idle_count = 0;
-
+PROCESS_NAME(rest_server_er_app);
 #define XMACADDR "\x00\x80\xe1\x02\x00\x1d\x51\xba"
 
 void set_rime_addr(void *addr)
@@ -76,12 +78,12 @@ main()
   leds_init();
   leds_on(1);
   
-#ifdef WITH_SIP_LCD
+//#ifdef WITH_SIP_LCD
   SPI_LCD_Init();
   lcd_initial();
   Display_Clear(0x001f);
   Display_Desc(); 
-#endif
+//#endif
   
   process_init();
   
@@ -146,7 +148,17 @@ main()
 #endif //UIP_CONF_IPV6_RPL
 #endif //UIP_CONF_IPV6
   process_start(&sensors_process, NULL);
+  
+  process_start(&rest_server_er_app, NULL);  
+
+#if WITH_CTK  
+  process_start(&ctk_process, NULL);
+#endif
+  
+#if 0&&AUTOSTART_ENABLE    
   autostart_start(autostart_processes);
+#endif
+  
   while(1) {
     do {
     } while(process_run() > 0);

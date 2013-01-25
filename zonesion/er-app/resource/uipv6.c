@@ -42,7 +42,7 @@ uipv6_handler(void* request, void* response, uint8_t *buffer, uint16_t preferred
   //int base_len = strlen(resource_uipv6.url);
 
       REST.set_header_content_type(response, REST.type.TEXT_PLAIN);
-      snprintf((char *)buffer, REST_MAX_CHUNK_SIZE, "{\"type\":1}");
+      snprintf((char *)buffer, REST_MAX_CHUNK_SIZE, "{\"type\":2}");
       REST.set_response_payload(response, buffer, strlen((char *)buffer));
 }
 
