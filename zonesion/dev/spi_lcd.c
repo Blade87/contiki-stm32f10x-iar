@@ -23,6 +23,12 @@
 /* Private typedef -----------------------------------------------------------*/
 
 /* Private define ------------------------------------------------------------*/
+#define CONFIG_RGB 0
+#if CONFIG_RGB
+#define SBIT_RGB  0x08
+#else
+#define SBIT_RGB  0x00
+#endif
 
 /* Private macROTATION -------------------------------------------------------------*/
 #define USE_SPI 1
@@ -46,7 +52,7 @@
  #define RCC_APB2Periph_GPIO_CS   RCC_APB2Periph_GPIOB
  #define GPIO_Pin_CS              GPIO_Pin_12 
 
-#if 1
+#if 0
  #define GPIO_RS					GPIOB
  #define RCC_APB2Periph_GPIO_RS   RCC_APB2Periph_GPIOB
  #define GPIO_Pin_RS              GPIO_Pin_14 
@@ -243,13 +249,13 @@ write_data(0x0E);
  
 write_command(0x36); //MX, MY, RGB mode 
 #if ROTATION == 90
-write_data(0xa8);
+write_data(0xa0 | SBIT_RGB);
 #elif ROTATION == 180
-write_data(0xc8); 
+write_data(0xc0 | SBIT_RGB); 
 #elif ROTATION == 270
-write_data(0x68); 
+write_data(0x60 | SBIT_RGB); 
 #else
-write_data(0x08); 
+write_data(0x00 | SBIT_RGB); 
 #endif
 #if ROTATION == 90 || ROTATION == 270
 write_command(0x2a);
@@ -969,7 +975,7 @@ void Display_Desc()
 { 	
   unsigned char * p = "www.zonesion.com";
 
-    Display_Clear_Rect(0, 0, LCDW, 9, 0xaaaa);
+    Display_Clear_Rect(0, 0, LCDW, 9, 0xffff);
     Display_ASCII5X8(1, 1, 0x0000, p);
 
     Display_ASCII8X16(1,24, 0xf800, "MD:T18003");
@@ -980,7 +986,7 @@ void Display_Desc()
     Display_ASCII8X16(1,84, 0x0000, "2010.11.26");
 
 	Display_Clear_Rect(0, LCDH-9
-	, LCDW, 9, 0xaaaa);
+	, LCDW, 9, 0xffff);
 	Display_ASCII5X8((LCDW-strlen(p)*6)/2, LCDH-8, 0x0000, p);
 }
 
